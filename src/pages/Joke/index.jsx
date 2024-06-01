@@ -1,10 +1,9 @@
 import './style.css';
 import { useState } from 'react';
 
-
-export const Joke = () => {
-  const [likesUp, setLikesUp] = useState(0);
-  const [likesDown, setLikesDown] = useState(0);
+export const Joke = ({ userAvatar, userName, text, likes, dislikes }) => {
+  const [likesUp, setLikesUp] = useState(likes);
+  const [likesDown, setLikesDown] = useState(dislikes);
 
   const handleLikeUp = () => {
     setLikesUp(likesUp + 1);
@@ -18,22 +17,26 @@ export const Joke = () => {
     <div className="joke">
       <div className="joke__body">
         <div className="joke__user">
-          <img className="user-avatar" src="https://raw.githubusercontent.com/Czechitas-podklady-WEB/dadjokes/main/users/user01.png"/>
-          <p className="user-name">Neroxx</p>
+          <img className="user-avatar" src={userAvatar} alt="User Avatar" />
+          <p className="user-name">{userName}</p>
         </div>
 
-        <p className="joke__text">
-          The secret service isn't allowed to yell "Get down!" anymore when the
-          president is about to be attacked. Now they have to yell "Donald,
-          duck!"
-        </p>
+        <p className="joke__text">{text}</p>
       </div>
       <div className="joke__likes">
-        <button id="btn-up" className="btn-like btn-like--up" onClick={handleLikeUp}></button>
+        <button
+          id="btn-up"
+          className="btn-like btn-like--up"
+          onClick={handleLikeUp}
+        ></button>
         <span id="likes-up" className="likes-count likes-count--up">
           {likesUp}
         </span>
-        <button id="btn-down" className="btn-like btn-like--down" onClick={handleLikeDown}></button>
+        <button
+          id="btn-down"
+          className="btn-like btn-like--down"
+          onClick={handleLikeDown}
+        ></button>
         <span id="likes-down" className="likes-count likes-count--down">
           {likesDown}
         </span>
